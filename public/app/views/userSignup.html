@@ -3,19 +3,14 @@
     <div class="row">
       <div class="form-group col-xs-12 col-md-8">
         <label for="signupEmail">Email address</label>
-        <input id="signupEmail" class="form-control" type="email" placeholder="example@123.com" >
+        <input ng-model="user.email" id="signupEmail" class="form-control" type="email" placeholder="example@123.com" >
       </div>
     </div>
     <div class="row">
       <div class="form-group col-xs-12 col-md-8">
         <label for="signupPassword">Choose a Password</label>
-        <input id="signupPassword" class="form-control" type="password" placeholder="******" >
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-xs-12 col-md-8">
-        <label for="signupPasswordConfirm">Confirm Password</label>
-        <input id="signupPasswordConfirm" class="form-control" type="password" placeholder="******" >
+        <input ng-model="user.password" id="signupPassword" class="form-control" type="{{showpassword ? 'text' : 'password'}}" placeholder="******" >
+        <input type="checkbox" ng-model="showpassword" ng-checked="false"> Show password
       </div>
     </div>
     <div class="row">

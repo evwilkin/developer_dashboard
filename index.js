@@ -14,14 +14,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-mongoose.connect('mongodb://localhost/api/developer_dashboard');
+mongoose.connect('mongodb://localhost/devdash');
 
-app.use('/api/users', expressJWT({secret: secret})
-  .unless({path: ['/api/users'], method: 'post'}));
+// app.use('/api/users', expressJWT({secret: secret})
+//   .unless({path: ['/api/users'], method: 'post'}));
 
 app.use('/api/users', require('./controllers/users'));
 
+//Login Route
 app.post('/api/auth', function(req, res) {
+  console.log(req.body.email);
+  console.log(req.body.password);
   User.findOne({email: req.body.email}, function(err, user) {
     if (err || !user) return res.status(401).send({message: 'User not found'});
     user.authenticated(req.body.password, function(err, result) {

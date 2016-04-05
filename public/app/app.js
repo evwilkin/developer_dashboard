@@ -1,4 +1,4 @@
-var app = angular.module("DeveloperDashboard", ["DeveloperDashboardCtrl", "ui.router", "ngAnimate", "ui.bootstrap", "ngResource"]);
+var app = angular.module("DeveloperDashboard", ["DeveloperDashboardCtrls", "ui.router", "ngAnimate", "ui.bootstrap", "ngResource"]);
 
 app.config([
   '$stateProvider',
@@ -35,10 +35,14 @@ app.config([
     templateUrl: 'app/views/userLogin.html',
     controller: 'LoginCtrl'
   })
+  .state('logout', {
+    url: '/logout',
+    controller: 'LogoutCtrl'
+  })
   .state('projects', {
     url: '/projects',
     templateUrl: 'app/views/projects.html',
-    controller: 'SignupCtrl'
+    controller: 'ProjectsCtrl'
   })
   .state('404', {
     url: '/404',
@@ -51,3 +55,8 @@ app.config([
 app.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor'); 
 }])
+.run(["$rootScope", "Auth", function($rootScope, Auth){
+  $rootScope.isLoggedIn = function (){
+    return Auth.isLoggedIn.apply(Auth)
+  }
+}]);

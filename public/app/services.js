@@ -1,18 +1,15 @@
 angular.module('DeveloperDashboardServices', ['ngResource'])
-.factory('Restaurant', ['$resource', function($resource) {
-  return $resource('/api/restaurants/:id');
-}])
 
 .factory('Auth', ['$window', function($window) {
   return { 
     saveToken: function(token) {
-      $window.localStorage['secretrestaurants-token'] = token; 
+      $window.localStorage['devdash-token'] = token; 
     },
     getToken: function() {
-      return $window.localStorage['secretrestaurants-token'];
+      return $window.localStorage['devdash-token'];
     },
     removeToken: function() {
-      $window.localStorage.removeItem('secretrestaurants-token');
+      $window.localStorage.removeItem('devdash-token');
     },
     isLoggedIn: function() { 
       var token = this.getToken();

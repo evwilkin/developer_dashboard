@@ -1,45 +1,33 @@
-angular.module('DeveloperDashboardCtrl', ['DeveloperDashboardServices'])
-.controller('AllRestaurantsCtrl', ['$scope', 'Restaurant', function($scope, Restaurant) {
-  $scope.restaurants = [];
+angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
-//get all restaurants
-  Restaurant.query(function success(data) {
-    $scope.restaurants = data;
-  }, function error(data) {
-    console.log(data);
-  });
-}])
-//show a specific restaurant
-.controller('ShowCtrl', ['$scope', '$stateParams', 'Restaurant', function($scope, $stateParams, Restaurant) {
-  $scope.restaurant = {};
+.controller('HomeCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
 
-  Restaurant.get({id: $stateParams.id}, function success(data) {
-    $scope.restaurant = data;
-  }, function error(data) {
-    console.log(data);
-  });
 }])
-.controller('NavCtrl', ['$scope', 'Auth', '$state', function($scope, Auth, $state) {
-  $scope.Auth = Auth;
-  $scope.logout = function() {
-    Auth.removeToken();
-    $state.reload();
-  }
+.controller('ProjectsCtrl', ['$scope', '$state', function($scope, $state) {
+  
 }])
-.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
+.controller('LogoutCtrl', ['$scope', 'Auth', '$location', function($scope, Auth, $location) {
+  Auth.removeToken();
+  $location.path('/');
+}])
+.controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   $scope.user = {
     email: '',
     password: ''
   };
   $scope.userSignup = function() {
     $http.post('/api/users', $scope.user).then(function success (res) {
-      $location.path('/');
-    }, function error(res) {
-      console.log(res);
+      $http.post('api/auth',$scope.user).then(function success (res){
+        Auth.saveToken(res.data.token);
+        $location.path('/');
+      }, function error(res) {
+        console.log(res.data);
+      });
     });
   }
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
+  console.log("We are in Login");
   $scope.user = {
     email: '',
     password: ''
@@ -49,7 +37,7 @@ angular.module('DeveloperDashboardCtrl', ['DeveloperDashboardServices'])
       Auth.saveToken(res.data.token);      
       $location.path('/');
     }, function error(res) {
-      console.log(res);
+      console.log(res.data);
     })
   }
 }])
