@@ -1,16 +1,53 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
 .controller('HomeCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
-
+  console.log("We are in HomeCtrl inside App");
 }])
-.controller('ProjectsCtrl', ['$scope', '$state', function($scope, $state) {
-  
+.controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
+  console.log("We are in Projects controller inside App");
+  $scope.projects = [];
+
+//get all projects
+  Project.query(function success(res) {
+    $scope.projects = res;
+  }, function error(res) {
+    console.log(res);
+  });
+//delete projects
+  $scope.deleteProject = function(id, projectsIdx) {
+    Project.delete({id: id}, function success(res) {
+      $scope.projects.splice(projectsIdx, 1);
+    }, function error(res) {
+      console.log(res);
+    });
+  }
+}])
+.controller('NewProjectCtrl', ['$scope', '$state', '$location', 'Project', function($scope, $state, $location, Project) {
+  console.log("We are in NewProject controller inside App");
+  $scope.project = {
+    name: '',
+    description: '',
+    technologies: [],
+    userStories: [],
+    requirements: [],
+    link: '',
+    todos: []
+  };
+  $scope.newProject = function() {
+    Project.save($scope.project, function success (res) {
+      $location.path('/projects');
+    }, function error(res) {
+      console.log(res);
+    });
+  }
 }])
 .controller('LogoutCtrl', ['$scope', 'Auth', '$location', function($scope, Auth, $location) {
+  console.log("Logout Controller inside App");
   Auth.removeToken();
   $location.path('/');
 }])
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
+  console.log("We are in Signup controller inside App");
   $scope.user = {
     email: '',
     password: ''
@@ -27,7 +64,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   }
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
-  console.log("We are in Login");
+  console.log("We are in Login controller inside App");
   $scope.user = {
     email: '',
     password: ''

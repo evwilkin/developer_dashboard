@@ -1,1 +1,13 @@
-<h1>Projects</h1>
+<div class="container">
+
+  <h1>Your Projects</h1>
+  <a href="/projects/new" class="btn btn-success">New Project</a> 
+
+  <div class="well" ng-repeat="project in projects">
+    <h1>{{project.name}}</h1>
+    <a ng-href="/project/{{project._id}}">Permalink</a>
+    <a ng-click="deleteProject(project._id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"></a>
+</div>
+
+
+</div>

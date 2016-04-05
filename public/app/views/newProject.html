@@ -1,0 +1,37 @@
+<div class="container">
+
+  <h1>New Project</h1>
+
+  <form ng-submit="newProject()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" ng-model="project.name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" ng-model="project.description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="technologies">Technologies</label>
+      <textarea class="form-control" id="technologies" ng-model="project.technologies"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="userStories">User Stories</label>
+      <textarea class="form-control" id="userStories" ng-model="project.userStories"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="requirements">Requirements</label>
+      <textarea class="form-control" id="requirements" ng-model="project.requirements"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="link">Github Link</label>
+      <input type="text" class="form-control" id="link" ng-model="project.link">
+    </div>
+    <div class="form-group">
+      <label for="todos">To Do</label>
+      <textarea class="form-control" id="todos" ng-model="project.todos"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

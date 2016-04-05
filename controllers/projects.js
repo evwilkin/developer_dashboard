@@ -1,28 +1,28 @@
 var express = require('express');
-var User = require('../models/user');
+var Project = require('../models/project');
 var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    console.log("looking up user");
-    User.find(function(err, users) {
+    console.log("looking up projects");
+    Project.find(function(err, projects) {
       if (err) return res.status(500).send(err);
-      res.send(users);
+      res.send(projects);
     });
   })
   .post(function(req, res) {
-    console.log("creating user");
+    console.log("creating project");
     console.log(req.body);
-    User.create(req.body, function(err, user) {
+    Project.create(req.body, function(err, project) {
       if (err) return res.status(500).send(err);
-      res.send(user);
+      res.send(project);
     });
   });
 
 router.get('/:id', function(req, res) {
-  User.findById(req.params.id, function(err, user) {
+  Project.findById(req.params.id, function(err, project) {
     if (err) return res.status(500).send(err);
-    res.send(user);
+    res.send(project);
   });
 });
 

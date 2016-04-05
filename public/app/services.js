@@ -1,5 +1,9 @@
 angular.module('DeveloperDashboardServices', ['ngResource'])
 
+.factory('Project', ['$resource', function($resource) {
+  return $resource('/api/projects/:id');
+}])
+
 .factory('Auth', ['$window', function($window) {
   return { 
     saveToken: function(token) {
