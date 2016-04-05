@@ -7,7 +7,11 @@ var projectSchema = new mongoose.Schema({
   userStories: Array,
   requirements: Array,
   link: String,
-  todos: Array
+  todos: Array,
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "users"
+  }
 });
 
 projectSchema.set('toJSON', {

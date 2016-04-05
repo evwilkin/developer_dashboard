@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost/devdash');
 
+app.use('/api/projects', expressJWT({secret: secret}));
 // app.use('/api/users', expressJWT({secret: secret})
 //   .unless({path: ['/api/users'], method: 'post'}));
 

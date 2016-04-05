@@ -49,6 +49,11 @@ app.config([
     templateUrl: 'app/views/newProject.html',
     controller: 'NewProjectCtrl'
   })
+  .state('showProject', {
+    url: '/projects/:id',
+    templateUrl: 'app/views/showProject.html',
+    controller: 'ShowProjectCtrl'
+  })
   .state('404', {
     url: '/404',
     templateUrl: 'app/views/404.html'

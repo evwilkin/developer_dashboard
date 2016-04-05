@@ -1,7 +1,14 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
-.controller('HomeCtrl', ['$scope', '$stateParams', function($scope, $stateParams) {
+.controller('HomeCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in HomeCtrl inside App");
+  $scope.projects = [];
+  // Get all projects
+  Project.query(function success(res) {
+    $scope.projects = res;
+  }, function error(res) {
+    console.log(res);
+  });
 }])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in Projects controller inside App");
@@ -21,6 +28,17 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       console.log(res);
     });
   }
+}])
+.controller('ShowProjectCtrl', ['$scope', '$stateParams', 'Project', function($scope, $stateParams, Project) {
+  console.log("We are in ShowProjects controller inside App");
+  $scope.project = {};
+
+//get all projects
+  Project.get({id: $stateParams.id}, function success(res) {
+    $scope.project = res;
+  }, function error(res) {
+    console.log(res);
+  });
 }])
 .controller('NewProjectCtrl', ['$scope', '$state', '$location', 'Project', function($scope, $state, $location, Project) {
   console.log("We are in NewProject controller inside App");
