@@ -1,0 +1,20 @@
+<div class="row">
+  <h1 class="text-center">TIME</h1>
+  {{ date_expression | date : format : EEEE, MMMM d }}
+</div>
+<div class="row">
+  <div id="todo" class="col-sm-3 text-center">
+    <h3>To Do</h3>
+    <div>
+      {{ TODOITEMS }}
+    </div>
+  </div>
+  <div id="notes" class="col-sm-6 text-center">
+    <h3>Notes</h3>
+    {{ NOTES }}
+  </div>
+  <div id="projects" class="col-sm-3 text-center">
+    <h3>Projects</h3>
+    {{ PROJECTS }}
+  </div>
+</div>

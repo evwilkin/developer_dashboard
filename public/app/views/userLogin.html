@@ -1,0 +1,29 @@
+<div class="container">
+
+  <h2>Product overview, Login and Sign Up</h2>
+
+  <form ng-submit="userLogin()">
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-8">
+        <label for="loginEmail">Email address</label>
+        <input id="loginEmail" class="form-control" type="email" placeholder="example@123.com" ng-model="user.email" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-12 col-md-8">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" class="form-control" type="{{showpassword ? 'text' : 'password'}}" placeholder="******" ng-model="user.password" >
+        <input type="checkbox" ng-model="showpassword" ng-checked="false"> Show password
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-2">
+        <button class="login btn btn-primary">Log In</button>
+      </div>
+      <div class="form-group col-xs-10 col-xs-offset-1 col-sm-4">
+        <a class="login btn btn-primary" href="/signup">Sign Up</a>
+      </div>
+    </div>
+  </form>
+
+</div>

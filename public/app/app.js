@@ -35,6 +35,11 @@ app.config([
     templateUrl: 'app/views/userLogin.html',
     controller: 'LoginCtrl'
   })
+  .state('projects', {
+    url: '/projects',
+    templateUrl: 'app/views/projects.html',
+    controller: 'SignupCtrl'
+  })
   .state('404', {
     url: '/404',
     templateUrl: 'app/views/404.html'
@@ -43,6 +48,6 @@ app.config([
   $locationProvider.html5Mode(true);
 }])
 
-app.config(['$httpProvider', function($httpProvider) { //httpProvider can have array of diff Interceptors that act like middleware
-  $httpProvider.interceptors.push('AuthInterceptor'); //grabs the AuthInterceptor from services.js
+app.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor'); 
 }])
