@@ -7,7 +7,8 @@ var userSchema = Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
+  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
+  todos: [{ type: Schema.Types.ObjectId, ref: 'Todo' }]
 });
 
 userSchema.set('toJSON', {

@@ -14,3 +14,13 @@ div.center-block {
 #todo, #notes, #projects {
   border: 1px solid black;
 }
+
+ul {
+  padding: 0;
+}
+
+.homeTodo {
+  list-style-type: none;
+  margin: none;
+  padding: none;
+}

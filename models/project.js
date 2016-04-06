@@ -11,7 +11,6 @@ var projectSchema = new mongoose.Schema({
   userStories: Array,
   requirements: Array,
   link: String,
-  todos: Array,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"

@@ -1,15 +1,19 @@
 <div class="row">
-  <h1 class="text-center">TIME</h1>
-  {{ date_expression | date  }}
+  <h1 class="text-center">{{ date | date:'MMMM dd, yyyy' }}</h1>
 </div>
 <div class="row">
   <div id="todo" class="col-sm-3 text-center">
     <h3>To Do</h3>
+    <form ng-submit="newTodo()">
+      <input id="body" ng-model="todo.body" placeholder="New Todo" >
+      <button type="submit">Add</button>
+    </form>
     <div>
-      <ul ng-repeat="todo in todos track by $index">
-        <li>{{todo.body}}</li>
+      <ul ng-repeat="todo in todos track by $index ">
+        <li class="homeTodo">{{ todo.body }}</li>
       </ul>
     </div>
+    <p>{{ todo.body }}</p>
   </div>
   <div id="notes" class="col-sm-6 text-center">
     <h3>Notes</h3>
@@ -20,7 +24,7 @@
   <div id="projects" class="col-sm-3 text-center">
     <h3>Projects</h3>
     <div ng-repeat="project in projects track by $index">
-      <a ng-href="/projects/{{project.id}}"><h1>{{project.name}}</h1></a>
+      <a ng-href="/projects/{{project.id}}"><h1>{{ project.name }}</h1></a>
     </div>
   </div>
 </div>

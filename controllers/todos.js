@@ -4,9 +4,9 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    /*currentUser = req.user._doc._id;*/  // This is pulling out the logged in user's email
+    currentUser = req.user._doc._id;
     console.log("looking up todos");
-    Todo.find(/*{ user: currentUser },*/ function(err, todos) {
+    Todo.find({ user: currentUser }, function(err, todos) {
       if (err) return res.status(500).send(err);
       res.send(todos);
     });
@@ -14,7 +14,10 @@ router.route('/')
   .post(function(req, res) {
     console.log("creating todo");
     console.log(req.body);
-    Todo.create(req.body, function(err, todo) {
+    Todo.create({
+      user: req.user._doc._id,
+      body: req.body.body
+    }, function(err, todo) {
       if (err) return res.status(500).send(err);
       res.send(todo);
     });

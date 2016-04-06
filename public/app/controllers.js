@@ -2,6 +2,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
 .controller('HomeCtrl', ['$scope', 'Project', 'Todo', 'Note', function($scope, Project, Todo, Note) {
   console.log("We are in HomeCtrl inside App");
+  $scope.date = new Date();
   $scope.projects = [];
   $scope.todos = [];
   $scope.notes = [];
@@ -21,6 +22,17 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   }, function error(res) {
     console.log(res);
   });
+  $scope.todo = {
+    body: ''
+  };
+  $scope.newTodo = function() {
+    Todo.save($scope.todo, function success (res) {
+      $scope.todo={ body: '' };
+      $scope.todos.push(res);
+    }, function error(res) {
+      console.log(res);
+    });
+  }
 }])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in Projects controller inside App");
@@ -60,8 +72,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     technologies: [],
     userStories: [],
     requirements: [],
-    link: '',
-    todos: []
+    link: ''
   };
   $scope.newProject = function() {
     Project.save($scope.project, function success (res) {
