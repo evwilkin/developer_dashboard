@@ -6,7 +6,7 @@ router.route('/')
   .get(function(req, res) {
     /*currentUser = req.user._doc._id;*/  // This is pulling out the logged in user's email
     console.log("looking up notes");
-    Note.find(/*{ user: currentUser },*/ function(err, notes) {
+    Note.find({ user: currentUser }, function(err, notes) {
       if (err) return res.status(500).send(err);
       res.send(notes);
     });
@@ -14,7 +14,10 @@ router.route('/')
   .post(function(req, res) {
     console.log("creating note");
     console.log(req.body);
-    Note.create(req.body, function(err, note) {
+    Note.create({
+      user: req.user._doc._id,
+      text: req.body.text
+    }, function(err, note) {
       if (err) return res.status(500).send(err);
       res.send(note);
     });

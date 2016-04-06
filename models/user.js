@@ -1,9 +1,13 @@
 var mongoose = require("mongoose");
 var bcrypt   = require('bcrypt');
+var Schema = mongoose.Schema;
+var Project = require("./project.js");
 
-var userSchema = new mongoose.Schema({
+var userSchema = Schema({
   email: {type: String, required: true, unique: true},
-  password: {type: String, required: true}
+  password: {type: String, required: true},
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }]
 });
 
 userSchema.set('toJSON', {

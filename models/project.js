@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var User = require ("./user");
 
 var projectSchema = new mongoose.Schema({
   name: {
@@ -29,12 +30,16 @@ projectSchema.set('toJSON', {
       requirements: ret.requirements,
       link: ret.link,
       todos: ret.todos,
-      userId: ret.userId
+      user: ret.user
     };
     return returnJson;
   }
 });
 
+projectSchema.pre('find', function(next){
+  this.populate('user', 'id');
+  next();
+});
 
 var Project = mongoose.model("Project", projectSchema);
 
