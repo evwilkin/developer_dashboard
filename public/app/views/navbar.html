@@ -16,8 +16,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
-        <li><a href="/login">Log In</a></li>
-        <li><a ng-href="/logout">Logout</a></li>
+        <li><a href="/login" ng-hide="Auth.isLoggedIn()">Log In</a></li>
+        <li><a ng-href="/logout" ng-hide="Auth.isLoggedIn()">Logout</a></li>
         <!-- <li uib-dropdown class="dropdown">
           <a href="#" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Log In<b class="caret"></b></a>
           <ul uib-dropdown-menu class="dropdown-menu">
