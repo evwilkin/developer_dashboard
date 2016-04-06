@@ -1,11 +1,23 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
-.controller('HomeCtrl', ['$scope', 'Project', function($scope, Project) {
+.controller('HomeCtrl', ['$scope', 'Project', 'Todo', 'Note', function($scope, Project, Todo, Note) {
   console.log("We are in HomeCtrl inside App");
   $scope.projects = [];
+  $scope.todos = [];
+  $scope.notes = [];
   // Get all projects
   Project.query(function success(res) {
     $scope.projects = res;
+  }, function error(res) {
+    console.log(res);
+  });
+  Todo.query(function success(res) {
+    $scope.todos = res;
+  }, function error(res) {
+    console.log(res);
+  });
+  Note.query(function success(res) {
+    $scope.notes = res;
   }, function error(res) {
     console.log(res);
   });

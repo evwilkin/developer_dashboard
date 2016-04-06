@@ -4,6 +4,14 @@ angular.module('DeveloperDashboardServices', ['ngResource'])
   return $resource('/api/projects/:id');
 }])
 
+.factory('Todo', ['$resource', function($resource) {
+  return $resource('/api/todos/:id');
+}])
+
+.factory('Note', ['$resource', function($resource) {
+  return $resource('/api/notes/:id');
+}])
+
 .factory('Auth', ['$window', function($window) {
   return { 
     saveToken: function(token) {

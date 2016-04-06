@@ -1,7 +1,10 @@
 var mongoose = require("mongoose");
 
 var projectSchema = new mongoose.Schema({
-  name: {type: String, required: true},
+  name: {
+    type: String, 
+    required: true
+  },
   description: String,
   technologies: Array,
   userStories: Array,
@@ -9,8 +12,8 @@ var projectSchema = new mongoose.Schema({
   link: String,
   todos: Array,
   user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "users"
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 
@@ -25,7 +28,8 @@ projectSchema.set('toJSON', {
       userStories: ret.userStories,
       requirements: ret.requirements,
       link: ret.link,
-      todos: ret.todos
+      todos: ret.todos,
+      userId: ret.userId
     };
     return returnJson;
   }

@@ -23,6 +23,8 @@ app.use('/api/projects', expressJWT({secret: secret}));
 
 app.use('/api/users', require('./controllers/users'));
 app.use('/api/projects', require('./controllers/projects'));
+app.use('/api/todos', require('./controllers/todos'));
+app.use('/api/notes', require('./controllers/notes'));
 
 //Login Route
 app.post('/api/auth', function(req, res) {

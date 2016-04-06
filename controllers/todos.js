@@ -1,0 +1,38 @@
+var express = require('express');
+var Todo = require('../models/todo');
+var router = express.Router();
+
+router.route('/')
+  .get(function(req, res) {
+    /*currentUser = req.user._doc._id;*/  // This is pulling out the logged in user's email
+    console.log("looking up todos");
+    Todo.find(/*{ user: currentUser },*/ function(err, todos) {
+      if (err) return res.status(500).send(err);
+      res.send(todos);
+    });
+  })
+  .post(function(req, res) {
+    console.log("creating todo");
+    console.log(req.body);
+    Todo.create(req.body, function(err, todo) {
+      if (err) return res.status(500).send(err);
+      res.send(todo);
+    });
+  });
+
+router.route('/:id')
+  .get(function(req, res) {
+    Todo.findById(req.params.id, function(err, todo) {
+      if (err) return res.status(500).send(err);
+      res.send(todo);
+    });
+  })
+  .put(function(req, res) {
+    Todo.findById(req.params.id, function(err, todo) {
+      if (err) return res.status(500).send(err);
+      todo.body = req.body;
+      res.send(todo);
+    });
+  });
+
+module.exports = router;
