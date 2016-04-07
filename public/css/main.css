@@ -11,7 +11,7 @@ div.center-block {
   margin-right: auto;
 }
 
-#todo, #notes, #projects {
+.todo, #notes, #projects {
   border: 1px solid black;
 }
 
@@ -28,6 +28,10 @@ ul {
   margin: none;
   text-align: left;
   font-size: 1.3em;
+}
+
+#todosShow {
+  
 }
 
 span.glyphicon-remove {
