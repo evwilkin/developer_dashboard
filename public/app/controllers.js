@@ -4,15 +4,9 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   console.log("We are in HomeCtrl inside App");
   $scope.date = new Date();
   $scope.projects = [];
-  $scope.notes = [];
   // Get all projects
   Project.query(function success(res) {
     $scope.projects = res;
-  }, function error(res) {
-    console.log(res);
-  });
-  Note.query(function success(res) {
-    $scope.notes = res;
   }, function error(res) {
     console.log(res);
   });
@@ -132,5 +126,32 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   };
   $scope.todo = {
     body: ''
+  };
+}])
+.controller('NoteCtrl', ['$scope', '$location', 'Note', function($scope, $location, Note) {
+  console.log("We are in Todo controller inside App");
+  $scope.notes = [];
+
+  //get all Notes
+  Note.query(function success(res) {
+    $scope.notes = res;
+  }, function error(res) {
+    console.log(res);
+  });
+  //create new Note
+  $scope.newNote = function() {
+    Note.save($scope.note, function success (res) {
+      $location.path('/home');
+    }, function error(res) {
+      console.log(res);
+    });
+  };
+  //Delete note
+  $scope.deleteNote = function(id, notesIdx) {
+    Note.delete({id: id}, function success(res) {
+      $scope.notes.splice(notesIdx, 1);
+    }, function error(res) {
+      console.log(res);
+    });
   };
 }]);

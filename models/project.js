@@ -21,14 +21,12 @@ projectSchema.set('toJSON', {
   transform: function(doc, ret, options) {
     var returnJson = {
       id: ret._id,
-      email: ret.email,
       name: ret.name,
       description: ret.description,
       technologies: ret.technologies,
       userStories: ret.userStories,
       requirements: ret.requirements,
       link: ret.link,
-      todos: ret.todos,
       user: ret.user
     };
     return returnJson;

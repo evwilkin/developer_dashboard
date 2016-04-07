@@ -54,6 +54,11 @@ app.config([
     templateUrl: 'app/views/showProject.html',
     controller: 'ShowProjectCtrl'
   })
+  .state('newNote', {
+    url: '/notes/new',
+    templateUrl: 'app/views/newNote.html',
+    controller: 'NoteCtrl'
+  })
   .state('404', {
     url: '/404',
     templateUrl: 'app/views/404.html'
