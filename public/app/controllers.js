@@ -1,11 +1,6 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
-
-.controller('HomeCtrl', ['$scope', function($scope) {
-  console.log("We are in HomeCtrl inside App");
-  $scope.date = new Date();
-  // Get all projects
-}])
 .controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
+  $scope.date = new Date();
   $scope.Auth = Auth;
   $scope.logout = function() {
     Auth.removeToken();

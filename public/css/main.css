@@ -9,10 +9,23 @@ button.login, a.login {
   font-family: 'Bree Serif', serif;
 }
 
+nav.navbar-default {
+  margin-bottom: 0;
+}
+
+#homepage {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 div.notes {
-  width: 40%;
-  margin: 4%;
+  width: 31%;
+  margin: 1%;
   border: 1px solid red;
+  height: 100px;
+  overflow: scroll;
+  display: inline-block;
 }
 
 div.center-block {
@@ -21,11 +34,16 @@ div.center-block {
   margin-right: auto;
 }
 
-.todo, #notes, #projects {
-  border: 1px solid black;
+#todo {
+  height: 100%;
 }
 
-#projects h3 {
+#todo, #notes, #projects {
+  border: 1px solid black;
+  overflow: scroll;
+}
+
+#projects h3, #notes h3 {
   display: inline-block;
 }
 
@@ -37,11 +55,12 @@ ul {
   list-style-type: none;
   margin: none;
   text-align: left;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
-#todosShow {
-  
+.homeTodo hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 span.glyphicon-remove {
@@ -55,4 +74,8 @@ a.todoText {
 
 form.todoInput {
   margin-bottom: 15px;
+}
+
+#body {
+  width: 100%;
 }
