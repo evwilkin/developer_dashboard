@@ -5,6 +5,10 @@ button.login, a.login {
   margin: 5px auto;
 }
 
+.bree {
+  font-family: 'Bree Serif', serif;
+}
+
 div.center-block {
   display: block;
   margin-left: auto;

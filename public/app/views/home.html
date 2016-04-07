@@ -44,4 +44,14 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div id="news" class="col-sm-6 col-sm-offset-3" ng-controller="NewsCtrl">
+      <h3>News</h3>
+      <div ng-repeat="story in news track by $index">
+        <a ng-href="{{story.url}}">
+          <p>{{story.title}}</p>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

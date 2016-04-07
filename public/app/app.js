@@ -7,7 +7,6 @@ app.config([
   function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $urlRouterProvider.otherwise('/404');
-
   // Below sets up Angular routes
   $stateProvider
   .state('home', {
@@ -53,6 +52,11 @@ app.config([
     url: '/projects/:id',
     templateUrl: 'app/views/showProject.html',
     controller: 'ShowProjectCtrl'
+  })
+  .state('notes', {
+    url: '/notes',
+    templateUrl: 'app/views/notes.html',
+    controller: 'NoteCtrl'
   })
   .state('newNote', {
     url: '/notes/new',

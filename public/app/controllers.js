@@ -1,15 +1,9 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 
-.controller('HomeCtrl', ['$scope', 'Project', 'Todo', 'Note', function($scope, Project, Todo, Note) {
+.controller('HomeCtrl', ['$scope', function($scope) {
   console.log("We are in HomeCtrl inside App");
   $scope.date = new Date();
-  $scope.projects = [];
   // Get all projects
-  Project.query(function success(res) {
-    $scope.projects = res;
-  }, function error(res) {
-    console.log(res);
-  });
 }])
 .controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
   $scope.Auth = Auth;
@@ -17,6 +11,18 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     Auth.removeToken();
     $state.go('login');
   }
+}])
+.controller('NewsCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.news = [];
+  $http.get('https://hacker-news.firebaseio.com/v0/newstories.json').then(function(res) {
+    for (var i = 0; i < 10; i++) {
+      $http.get("https://hacker-news.firebaseio.com/v0/item/"+res.data[i]+".json").then(function(data) {
+        $scope.news.push(data.data);
+        console.log(data.data);
+      });
+    }
+  });
+  console.log($scope.news);
 }])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in Projects controller inside App");

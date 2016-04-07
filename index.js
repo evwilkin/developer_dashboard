@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect(mongolab || 'mongodb://localhost/devdash');
+mongoose.connect('mongodb://localhost/devdash' || mongolab);
 
 // JWT on all api routes unless creating new user or logging in
 app.use('/api/*', expressJWT({secret: secret})

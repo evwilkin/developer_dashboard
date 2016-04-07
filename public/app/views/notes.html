@@ -1,0 +1,11 @@
+<div class="container">
+
+  <h1>Notes</h1>
+  <a href="/notes/new" class="btn btn-success">New Note</a> 
+
+  <div class="well" ng-repeat="note in notes track by $index ">
+    <p>{{ note.text }}</p>
+  </div>
+
+
+</div>
