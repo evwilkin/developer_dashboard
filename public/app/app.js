@@ -29,6 +29,16 @@ app.config([
     url: '/logout',
     controller: 'LogoutCtrl'
   })
+  .state('todos', {
+    url: '/todos',
+    templateUrl: 'app/views/todos.html',
+    controller: 'TodoCtrl'
+  })
+  .state('showTodo', {
+    url: '/todos/:id',
+    templateUrl: 'app/views/showTodo.html',
+    controller: 'TodoCtrl'
+  })
   .state('projects', {
     url: '/projects',
     templateUrl: 'app/views/projects.html',

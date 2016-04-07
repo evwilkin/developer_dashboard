@@ -15,6 +15,10 @@ div.center-block {
   border: 1px solid black;
 }
 
+#projects h3 {
+  display: inline-block;
+}
+
 ul {
   padding: 0;
 }
@@ -22,5 +26,19 @@ ul {
 .homeTodo {
   list-style-type: none;
   margin: none;
-  padding: none;
+  text-align: left;
+  font-size: 1.3em;
+}
+
+span.glyphicon-remove {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+a.todoText {
+  padding-bottom: 15px;
+}
+
+form.todoInput {
+  margin-bottom: 15px;
 }

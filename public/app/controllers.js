@@ -4,16 +4,10 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   console.log("We are in HomeCtrl inside App");
   $scope.date = new Date();
   $scope.projects = [];
-  $scope.todos = [];
   $scope.notes = [];
   // Get all projects
   Project.query(function success(res) {
     $scope.projects = res;
-  }, function error(res) {
-    console.log(res);
-  });
-  Todo.query(function success(res) {
-    $scope.todos = res;
   }, function error(res) {
     console.log(res);
   });
@@ -22,24 +16,12 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   }, function error(res) {
     console.log(res);
   });
-  $scope.todo = {
-    body: ''
-  };
-  $scope.newTodo = function() {
-    Todo.save($scope.todo, function success (res) {
-      $scope.todo={ body: '' };
-      $scope.todos.push(res);
-    }, function error(res) {
-      console.log(res);
-    });
-  }
 }])
 .controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
   $scope.Auth = Auth;
   $scope.logout = function() {
-    $location.path('/');
     Auth.removeToken();
-    $state.reload();
+    $state.go('login');
   }
 }])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
@@ -122,3 +104,33 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     })
   }
 }])
+.controller('TodoCtrl', ['$scope', 'Todo', function($scope, Todo) {
+  console.log("We are in Todo controller inside App");
+  $scope.todos = [];
+
+  //get all Todos
+  Todo.query(function success(res) {
+    $scope.todos = res;
+  }, function error(res) {
+    console.log(res);
+  });
+  //delete Todos
+  $scope.newTodo = function() {
+    Todo.save($scope.todo, function success (res) {
+      $scope.todo={ body: '' };
+      $scope.todos.push(res);
+    }, function error(res) {
+      console.log(res);
+    });
+  };
+  $scope.deleteTodo = function(id, todosIdx) {
+    Todo.delete({id: id}, function success(res) {
+      $scope.todos.splice(todosIdx, 1);
+    }, function error(res) {
+      console.log(res);
+    });
+  };
+  $scope.todo = {
+    body: ''
+  };
+}]);

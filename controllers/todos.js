@@ -36,6 +36,12 @@ router.route('/:id')
       todo.body = req.body;
       res.send(todo);
     });
+  })
+  .delete(function(req, res) {
+    Todo.findByIdAndRemove(req.params.id, function(err) {
+      if (err) return res.status(500).send(err);
+      res.send({'message': 'success'});
+    });
   });
 
 module.exports = router;

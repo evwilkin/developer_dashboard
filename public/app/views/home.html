@@ -3,15 +3,18 @@
     <h1 class="text-center">{{ date | date:'MMMM dd, yyyy' }}</h1>
   </div>
   <div class="row">
-    <div id="todo" class="col-sm-3 text-center">
+    <div id="todo" class="col-sm-3 text-center" ng-controller="TodoCtrl">
       <h3>To Do</h3>
-      <form ng-submit="newTodo()">
+      <form class="todoInput" ng-submit="newTodo()">
         <input id="body" ng-model="todo.body" placeholder="New Todo" >
         <button type="submit">Add</button>
       </form>
       <div>
         <ul ng-repeat="todo in todos track by $index ">
-          <li class="homeTodo">{{ todo.body }}</li>
+          <li class="homeTodo">
+            <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo.id, $index)"></span>
+            <a class="todoText" ng-href="/todos/{{todo.id}}">{{ todo.body }}</a>
+          </li>
         </ul>
       </div>
       <p>{{ todo.body }}</p>
@@ -27,7 +30,7 @@
         <a href="/projects">Projects</a>
       </h3>
       <a href="/projects/new" class="addProject btn btn-default" aria-label="Add Project">
-        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
+        <span id="delete" class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
       </a>
       <div ng-repeat="project in projects track by $index">
         <a ng-href="/projects/{{project.id}}"><h1>{{ project.name }}</h1></a>
