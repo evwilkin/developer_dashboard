@@ -9,6 +9,12 @@ button.login, a.login {
   font-family: 'Bree Serif', serif;
 }
 
+div.notes {
+  width: 40%;
+  margin: 4%;
+  border: 1px solid red;
+}
+
 div.center-block {
   display: block;
   margin-left: auto;

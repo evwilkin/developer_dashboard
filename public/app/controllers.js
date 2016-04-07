@@ -18,11 +18,9 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     for (var i = 0; i < 10; i++) {
       $http.get("https://hacker-news.firebaseio.com/v0/item/"+res.data[i]+".json").then(function(data) {
         $scope.news.push(data.data);
-        console.log(data.data);
       });
     }
   });
-  console.log($scope.news);
 }])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in Projects controller inside App");

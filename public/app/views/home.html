@@ -27,12 +27,12 @@
       <a href="/notes/new" class="addNote btn btn-default" aria-label="Add Note">
         <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
       </a>
-      <div ng-repeat="note in notes track by $index">
+      <div class="notes col-xs-6" ng-repeat="note in notes track by $index">
         <h4>{{note.text}}</h4>
       </div>
     </div>
     <!-- Display user's Projects -->
-    <div id="projects" class="col-sm-3 text-center">
+    <div id="projects" class="col-sm-3 text-center" ng-controller="ProjectsCtrl">
       <h3>
         <a href="/projects">Projects</a>
       </h3>
