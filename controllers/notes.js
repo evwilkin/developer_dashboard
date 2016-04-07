@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    /*currentUser = req.user._doc._id;*/  // This is pulling out the logged in user's email
+    currentUser = req.user._doc._id;
     console.log("looking up notes");
     Note.find({ user: currentUser }, function(err, notes) {
       if (err) return res.status(500).send(err);

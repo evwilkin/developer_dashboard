@@ -34,6 +34,14 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     });
   }
 }])
+.controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
+  $scope.Auth = Auth;
+  $scope.logout = function() {
+    $location.path('/');
+    Auth.removeToken();
+    $state.reload();
+  }
+}])
 .controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
   console.log("We are in Projects controller inside App");
   $scope.projects = [];
@@ -82,11 +90,6 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     });
   }
 }])
-.controller('LogoutCtrl', ['$scope', 'Auth', '$location', function($scope, Auth, $location) {
-  console.log("Logout Controller inside App");
-  Auth.removeToken();
-  $location.path('/');
-}])
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   console.log("We are in Signup controller inside App");
   $scope.user = {
@@ -97,7 +100,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $http.post('/api/users', $scope.user).then(function success (res) {
       $http.post('api/auth',$scope.user).then(function success (res){
         Auth.saveToken(res.data.token);
-        $location.path('/');
+        $location.path('/home');
       }, function error(res) {
         console.log(res.data);
       });
@@ -113,7 +116,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   $scope.userLogin = function() {
     $http.post('/api/auth', $scope.user).then(function success(res) {
       Auth.saveToken(res.data.token);      
-      $location.path('/');
+      $location.path('/home');
     }, function error(res) {
       console.log(res.data);
     })

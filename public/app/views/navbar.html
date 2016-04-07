@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation" >
+<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl" >
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,18 +14,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/">Home</a></li>
+        <li class="active"><a href="/home">Home</a></li>
         <li><a href="/projects">Projects</a></li>
-        <li><a href="/login" ng-hide="Auth.isLoggedIn()">Log In</a></li>
-        <li><a ng-href="/logout" ng-hide="Auth.isLoggedIn()">Logout</a></li>
-        <!-- <li uib-dropdown class="dropdown">
-          <a href="#" uib-dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">Log In<b class="caret"></b></a>
-          <ul uib-dropdown-menu class="dropdown-menu">
-            <li><input type="text" placeholder="email" /></li>
-            <li><input type="password" placeholder="password" /></li>
-            <li><button class="btn btn-default" type="submit">Submit</button></li>
-          </ul>
-        </li> -->
+        <li><a href="/" ng-hide="Auth.isLoggedIn()">Login</a></li>
+        <li><a ng-click="logout()" ng-hide="!Auth.isLoggedIn()">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>

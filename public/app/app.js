@@ -8,30 +8,20 @@ app.config([
 
   $urlRouterProvider.otherwise('/404');
 
-//below sets up Angular routes
+  // Below sets up Angular routes
   $stateProvider
   .state('home', {
-    url: '/',
+    url: '/home',
     templateUrl: 'app/views/home.html',
     controller: 'HomeCtrl'
   })
-  // .state('newRecipe', {
-  //   url: '/recipes/new',
-  //   templateUrl: 'app/views/newRecipe.html',
-  //   controller: 'NewCtrl'
-  // })
-  // .state('recipeShow', {
-  //   url: '/recipes/:id',
-  //   templateUrl: 'app/views/showRecipe.html',
-  //   controller: 'ShowCtrl'
-  // })
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/views/userSignup.html',
     controller: 'SignupCtrl'
   })
   .state('login', {
-    url: '/login',
+    url: '/',
     templateUrl: 'app/views/userLogin.html',
     controller: 'LoginCtrl'
   })
@@ -60,7 +50,7 @@ app.config([
   });
 
   $locationProvider.html5Mode(true);
-}])
+}]);
 
 app.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor'); 
