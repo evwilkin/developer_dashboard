@@ -7,14 +7,14 @@ var User = require ("./models/user");
 var Project = require('./models/project')
 var app = express();
 var secret = "joliebug";
-
+var mongolab = "mongodb://heroku_4fqxcws5:rc8aifnim07t92i23qeqqjl3dp@ds021010.mlab.com:21010/heroku_4fqxcws5"
 var mongoose = require('mongoose');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost/devdash');
+mongoose.connect(mongolab || 'mongodb://localhost/devdash');
 
 // JWT on all api routes unless creating new user or logging in
 app.use('/api/*', expressJWT({secret: secret})
