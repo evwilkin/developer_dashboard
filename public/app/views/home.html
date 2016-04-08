@@ -1,17 +1,37 @@
-<div id="homePage" class="container-fluid">  
+<div id="homePage">  
+  <div class="row columnHeaders" ng-controller="TabsCtrl">
+    <a href="/todos">
+      <h3 class="bree col-sm-2 text-center">To Do</h3>
+    </a>
+    <div id="notesHeader" class="col-sm-8 text-center">
+      <a href="/notes">
+        <h3 class="bree">Notes</h3>
+      </a>
+      <a href="/notes/new" class="addNote btn btn-sm btn-success" aria-label="Add Note">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="projectsHeader" class="col-sm-2 text-center">
+      <a href="/projects">
+        <h3 class="bree">Projects</h3>
+      </a>
+      <a href="/projects/new" class="addProject btn btn-sm btn-success" aria-label="Add Project">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
   <div class="row">
     <!-- Display user's Todo items -->
     <div id="todo" class="col-sm-2 text-center" ng-controller="TodoCtrl">
-      <a href="http://localhost:3000/todos"><h3>To Do</h3></a>
       <form class="todoInput" ng-submit="newTodo()">
-        <input id="body" ng-model="todo.body" placeholder="New Todo" >
-        <button class="btn btn-success" type="submit">Add</button>
+        <input id="body" class="pull-left" ng-model="todo.body" placeholder="New Todo" >
+        <button class="addTodo" type="submit">Add</button>
       </form>
       <div>
-        <ul ng-repeat="todo in todos track by $index ">
+        <ul class="homeTodos" ng-repeat="todo in todos track by $index ">
           <li class="homeTodo">
             <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo.id, $index)"></span>
-            <a class="todoText" ng-href="/todos/{{todo.id}}">{{ todo.body }}</a>
+            <p class="todoText">{{ todo.body }}</p>
            <!--  <hr /> -->
           </li>
         </ul>
@@ -20,22 +40,21 @@
     </div>
     <!-- Display user's Notes -->
     <div id="notes" class="col-sm-8 text-center" ng-controller="NoteCtrl">
-      <div class="row">
-        <h3>
-          <a href="/notes">Notes</a>
-        </h3>
-        <a href="/notes/new" class="addNote btn btn-sm btn-success" aria-label="Add Note">
-          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
-        </a>
+      <div class="homeNotes row">
+        <div class="notes" ng-repeat="note in notes track by $index">
+          <div class="well">
+            <p class="noteText">{{note.text}}</p>
+          </div>
+        </div>
       </div>
       <div class="row">
-        <div class="notes" ng-repeat="note in notes track by $index">
-          <h5>{{note.text}}</h5>
-        </div>
+        <a href="/notes"><h4>View All Notes</h4></a>
       </div>
       <hr />
       <div id="news" class="row" ng-controller="NewsCtrl">
-        <h3>HackerNews</h3>
+        <a href="https://news.ycombinator.com/newest">
+          <h3>HackerNews</h3>
+        </a>
         <div ng-repeat="story in news track by $index">
           <a ng-href="{{story.url}}">
             <p>{{story.title}}</p>
@@ -45,16 +64,11 @@
     </div>
     <!-- Display user's Projects -->
     <div id="projects" class="col-sm-2 text-center" ng-controller="ProjectsCtrl">
-      <h3>
-        <a href="/projects">Projects</a>
-      </h3>
-      <a href="/projects/new" class="addProject btn btn-sm btn-success" aria-label="Add Project">
-        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"></span>
-      </a>
-      <hr />
+      
+      <hr id="projectsRule" />
       <div ng-repeat="project in projects track by $index">
         <a ng-href="/projects/{{project.id}}">
-          <h4>{{ project.name }}</h4>
+          <h4>{{ project.name | uppercase}}</h4>
         </a>
         <hr />
       </div>

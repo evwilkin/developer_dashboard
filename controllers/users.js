@@ -4,14 +4,12 @@ var router = express.Router();
 
 router.route('/')
   .get(function(req, res) {
-    console.log("looking up user");
     User.find(function(err, users) {
       if (err) return res.status(500).send(err);
       res.send(users);
     });
   })
   .post(function(req, res) {
-    console.log("creating user");
     console.log(req.body);
     User.create(req.body, function(err, user) {
       if (err) return res.status(500).send(err);

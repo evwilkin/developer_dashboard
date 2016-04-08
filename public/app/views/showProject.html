@@ -1,9 +1,26 @@
 <div class="container">
-
-  <h1>{{project.name}}</h1>
-  <p>{{ project.description }}</p>
-  <div ng-repeat="(key, value) in project">
-    {{ key }} - {{value }}
+  <div class="row text-center">
+    <h1 class="showTitle bree">{{project.name}}</h1>
+    <hr />
+      <div class="well">
+        <p>{{ project.description }}</p>
+        <a ng-href="{{project.link}}">
+          <p>{{project.link}}</p>
+        </a>
+      </div>
   </div>
-
+  <div class="row">
+    <div class="well col-sm-4">
+      <h3 class="bree">Requirements</h3>
+      <p>{{project.requirements[0]}}</p>
+    </div>
+    <div class="well col-sm-4">
+      <h3 class="bree">User Stories</h3>
+      <p>{{project.userStories[0]}}</p>
+    </div>
+    <div class="well col-sm-4">
+      <h3 class="bree">Technologies</h3>
+      <p>{{project.technologies[0]}}</p>
+    </div>
+  </div>
 </div>

@@ -6,14 +6,12 @@ var router = express.Router();
 router.route('/')
   .get(function(req, res) {
     currentUser = req.user._doc._id;
-    console.log("looking up projects");
     Project.find({ user: currentUser }, function(err, projects) {
       if (err) return res.status(500).send(err);
       res.send(projects);
     });
   })
   .post(function(req, res) {
-    console.log("creating project");
     Project.create({
       user: req.user._doc._id,
       name: req.body.name,

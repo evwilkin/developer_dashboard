@@ -1,4 +1,29 @@
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a { 
+  cursor: pointer; 
+}
+
+#view {
+  height: 100vh;
+  overflow: hidden;
+}
+
+a, a p, a h1 {
+  color: #3080e8;
+}
+
+#loginTag {
+  color: #BCBCBC;
+}
+
+h1, label {
+  color: #e88c30;
+}
+
+body {
+  background-color: #202020;
+  height: 100vh;
+  overflow: auto;
+}
 
 button.login, a.login {
   width: 50%;
@@ -13,18 +38,26 @@ nav.navbar-default {
   margin-bottom: 0;
 }
 
+#todo {
+  border-right: 1px solid #e88c30;
+  padding-right: 0;
+}
+
 #homepage {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
+div.columnHeaders {
+  border-bottom: white 1px solid;
+}
+
 div.notes {
   width: 31%;
   margin: 1%;
-  border: 1px solid red;
   height: 100px;
-  overflow: scroll;
+  overflow: auto;
   display: inline-block;
 }
 
@@ -34,13 +67,10 @@ div.center-block {
   margin-right: auto;
 }
 
-#todo {
-  height: 100%;
-}
-
-#todo, #notes, #projects {
-  border: 1px solid black;
-  overflow: scroll;
+#projects {
+  padding: 0;
+  border-left: 1px solid #e88c30;
+  height: 100vh;
 }
 
 #projects h3, #notes h3 {
@@ -51,25 +81,48 @@ ul {
   padding: 0;
 }
 
-.homeTodo {
+p {
+  color: #BCBCBC;
+  font-size: 1.2em;
+}
+
+.homeTodos {
+  padding-left: 10px;
+}
+
+.homeTodos li {
   list-style-type: none;
   margin: none;
   text-align: left;
   font-size: 1em;
 }
 
-.homeTodo hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
+#notesHeader h3, #projectsHeader h3 {
+  display: inline-block;
+}
+
+div.homeNotes {
+  height: 45vh;
+  overflow: auto;
+}
+
+hr {
+  margin: 5px 0 5px 0;
 }
 
 span.glyphicon-remove {
   margin-right: 10px;
   cursor: pointer;
+  color: red;
 }
 
-a.todoText {
-  padding-bottom: 15px;
+a.addNote, a.addProject {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+p.todoText {
+  display: inline;
 }
 
 form.todoInput {
@@ -77,5 +130,39 @@ form.todoInput {
 }
 
 #body {
-  width: 100%;
+  width: 70%;
+  height: 40px;
+}
+
+button.addTodo {
+  width: 30%;
+  height: 40px;
+  background-color: #5cb85c;
+}
+
+h1.showTitle {
+  font-size: 3em;
+}
+
+div.notes {
+  margin: 0;
+}
+
+div.well {
+  background-color: white;
+  color: #e88c30;
+  margin: 1px;
+}
+
+div.well p {
+  color: #202020;
+}
+
+#projectsRule {
+  margin-top: 0;
+}
+
+#new {
+  height: 10vh;
+  overflow: auto;
 }

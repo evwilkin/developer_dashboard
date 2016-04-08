@@ -7,7 +7,29 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $state.go('login');
   }
 }])
-.controller('NewsCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('HomeCtrl', ['$state', 'Auth', function($state, Auth) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
+}])
+.controller('TabsCtrl', ['$scope', '$state', function($scope, $state) {
+  $scope.home = function() {
+    $state.go('home');
+  }
+  $scope.todos = function() {
+    $state.go('todos');
+  }
+  $scope.notes = function() {
+    $state.go('notes');
+  }
+  $scope.projects = function() {
+    $state.go('projects');
+  }
+}])
+.controller('NewsCtrl', ['$scope', '$state', '$http', 'Auth', function($scope, $state, $http, Auth) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.news = [];
   $http.get('https://hacker-news.firebaseio.com/v0/newstories.json').then(function(res) {
     for (var i = 0; i < 10; i++) {
@@ -17,8 +39,10 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     }
   });
 }])
-.controller('ProjectsCtrl', ['$scope', 'Project', function($scope, Project) {
-  console.log("We are in Projects controller inside App");
+.controller('ProjectsCtrl', ['$scope', '$state', 'Project', 'Auth', function($scope, $state, Project, Auth) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.projects = [];
 
 //get all projects
@@ -26,6 +50,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $scope.projects = res;
   }, function error(res) {
     console.log(res);
+    $location.path('/404');
   });
 //delete projects
   $scope.deleteProject = function(id, projectsIdx) {
@@ -33,11 +58,14 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $scope.projects.splice(projectsIdx, 1);
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   }
 }])
-.controller('ShowProjectCtrl', ['$scope', '$stateParams', 'Project', function($scope, $stateParams, Project) {
-  console.log("We are in ShowProjects controller inside App");
+.controller('ShowProjectCtrl', ['$scope', '$stateParams', '$state', 'Auth', 'Project', function($scope, $stateParams, $state, Auth, Project) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.project = {};
 
 //get all projects
@@ -45,10 +73,13 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $scope.project = res;
   }, function error(res) {
     console.log(res);
+    $location.path('/404');
   });
 }])
-.controller('NewProjectCtrl', ['$scope', '$state', '$location', 'Project', function($scope, $state, $location, Project) {
-  console.log("We are in NewProject controller inside App");
+.controller('NewProjectCtrl', ['$scope', '$state', '$location', 'Project', 'Auth', function($scope, $state, $location, Project, Auth) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.project = {
     name: '',
     description: '',
@@ -62,11 +93,11 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $location.path('/projects');
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   }
 }])
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
-  console.log("We are in Signup controller inside App");
   $scope.user = {
     email: '',
     password: ''
@@ -78,12 +109,12 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
         $location.path('/home');
       }, function error(res) {
         console.log(res.data);
+        $location.path('/404');
       });
     });
   }
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
-  console.log("We are in Login controller inside App");
   $scope.user = {
     email: '',
     password: ''
@@ -94,11 +125,14 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $location.path('/home');
     }, function error(res) {
       console.log(res.data);
+      $location.path('/404');
     })
   }
 }])
-.controller('TodoCtrl', ['$scope', 'Todo', function($scope, Todo) {
-  console.log("We are in Todo controller inside App");
+.controller('TodoCtrl', ['$scope', '$state', 'Auth', 'Todo', function($scope, $state, Auth, Todo) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.todos = [];
 
   //get all Todos
@@ -106,6 +140,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $scope.todos = res;
   }, function error(res) {
     console.log(res);
+    $location.path('/404');
   });
   //delete Todos
   $scope.newTodo = function() {
@@ -114,6 +149,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $scope.todos.push(res);
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   };
   $scope.deleteTodo = function(id, todosIdx) {
@@ -121,14 +157,17 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $scope.todos.splice(todosIdx, 1);
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   };
   $scope.todo = {
     body: ''
   };
 }])
-.controller('NoteCtrl', ['$scope', '$location', 'Note', function($scope, $location, Note) {
-  console.log("We are in Todo controller inside App");
+.controller('NoteCtrl', ['$scope', '$location', '$uibModal', '$state', 'Auth', 'Note', function($scope, $location, $uibModal, $state, Auth, Note) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
   $scope.notes = [];
 
   //get all Notes
@@ -136,6 +175,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $scope.notes = res;
   }, function error(res) {
     console.log(res);
+    $location.path('/404');
   });
   //create new Note
   $scope.newNote = function() {
@@ -143,6 +183,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $location.path('/home');
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   };
   //Delete note
@@ -151,6 +192,54 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       $scope.notes.splice(notesIdx, 1);
     }, function error(res) {
       console.log(res);
+      $location.path('/404');
     });
   };
+  // Open new note Modal
+  /*$scope.open = function (size) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'newNote.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+  };*/
 }]);
+
+/*.controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
+  $scope.open = function (size) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'newNote.html',
+      controller: 'ModalInstanceCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    
+  };
+
+})*/
+
+// Please note that $uibModalInstance represents a modal window (instance) dependency.
+// It is not the same as the $uibModal service used above.
+
+/*.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});*/

@@ -14,11 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="/home">Home</a></li>
+        <li class="active"><a href="/home">Dashboard</a></li>
         <li><a href="/projects">Projects</a></li>
         <li><a href="/" ng-hide="Auth.isLoggedIn()">Login</a></li>
         <li><a ng-click="logout()" ng-hide="!Auth.isLoggedIn()">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
+    <!-- <div ng-controller="TabsCtrl">
+      <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0" heading="Dashboard" class="bree" select="home()"></uib-tab>
+        <uib-tab index="1" heading="To Do" class="bree" select="todos()"></uib-tab>
+        <uib-tab index="2" heading="Notes" class="bree" select="notes()"></uib-tab>
+        <uib-tab index="3" heading="Projects" class="bree" select="projects()"></uib-tab>
+      </uib-tabset>
+    </div> -->
   </div>
 </nav>

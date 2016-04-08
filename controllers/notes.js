@@ -5,14 +5,12 @@ var router = express.Router();
 router.route('/')
   .get(function(req, res) {
     currentUser = req.user._doc._id;
-    console.log("looking up notes");
     Note.find({ user: currentUser }, function(err, notes) {
       if (err) return res.status(500).send(err);
       res.send(notes);
     });
   })
   .post(function(req, res) {
-    console.log("creating note");
     console.log(req.body);
     Note.create({
       user: req.user._doc._id,
