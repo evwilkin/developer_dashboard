@@ -5,14 +5,12 @@ var router = express.Router();
 router.route('/')
   .get(function(req, res) {
     currentUser = req.user._doc._id;
-    console.log("looking up todos");
     Todo.find({ user: currentUser }, function(err, todos) {
       if (err) return res.status(500).send(err);
       res.send(todos);
     });
   })
   .post(function(req, res) {
-    console.log("creating todo");
     console.log(req.body);
     Todo.create({
       user: req.user._doc._id,
