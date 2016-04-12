@@ -7,7 +7,7 @@
       <button type="submit">Add</button>
     </form>
     <div>
-      <ul ng-repeat="todo in todos track by $index ">
+      <ul class="homeTodos" ng-repeat="todo in todos track by $index ">
         <li class="homeTodo">
           <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo.id, $index)"></span>
           <a class="todoText" ng-href="/todos/{{todo.id}}">{{ todo.body }}</a>

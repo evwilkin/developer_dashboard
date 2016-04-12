@@ -1,6 +1,7 @@
 angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 .controller('NavCtrl', ['$scope', 'Auth', '$state', '$location', function($scope, Auth, $state, $location) {
   $scope.date = new Date();
+  $scope.isCollapsed = true;
   $scope.Auth = Auth;
   $scope.logout = function() {
     Auth.removeToken();
