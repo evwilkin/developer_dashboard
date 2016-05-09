@@ -28,8 +28,8 @@
         <button class="addTodo" type="submit">Add</button>
       </form>
       <div>
-        <ul class="homeTodos" ng-repeat="todo in todos track by $index ">
-          <li class="homeTodo">
+        <ul class="homeTodos" ng-style="{overflow: 'auto'}">
+          <li class="homeTodo" ng-repeat="todo in todos track by $index">
             <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo.id, $index)"></span>
             <p class="todoText">{{ todo.body }}</p>
            <!--  <hr /> -->

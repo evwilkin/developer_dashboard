@@ -8,10 +8,11 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $state.go('login');
   }
 }])
-.controller('HomeCtrl', ['$state', 'Auth', function($state, Auth) {
+.controller('HomeCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
   if (!Auth.isLoggedIn()) {
     $state.go('login');
   }
+  $scope.height = window.innerHeight;
 }])
 .controller('TabsCtrl', ['$scope', '$state', function($scope, $state) {
   $scope.home = function() {
@@ -135,6 +136,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $state.go('login');
   }
   $scope.todos = [];
+  $scope.height = window.innerHeight;
 
   //get all Todos
   Todo.query(function success(res) {
