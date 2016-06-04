@@ -7,7 +7,7 @@
   width: inherit;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 a, a p, a h1 {
@@ -47,6 +47,8 @@ nav.navbar-default {
 #todo {
   border-right: 1px solid #e88c30;
   padding-right: 0;
+  height: 90vh;
+  overflow: auto;
 }
 
 #homepage {
@@ -175,7 +177,7 @@ div.notes {
 div.well {
   background-color: white;
   color: #e88c30;
-  margin: 1px;
+  box-sizing: border-box;
 }
 
 div.well p {
