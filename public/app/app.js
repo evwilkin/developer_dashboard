@@ -76,6 +76,6 @@ app.config(['$httpProvider', function($httpProvider) {
 }])
 .run(["$rootScope", "Auth", function($rootScope, Auth){
   $rootScope.isLoggedIn = function (){
-    return Auth.isLoggedIn.apply(Auth)
-  }
+    return Auth.isLoggedIn.apply(Auth);
+  };
 }]);

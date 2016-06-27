@@ -6,7 +6,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   $scope.logout = function() {
     Auth.removeToken();
     $state.go('login');
-  }
+  };
 }])
 .controller('HomeCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
   if (!Auth.isLoggedIn()) {
@@ -17,16 +17,16 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
 .controller('TabsCtrl', ['$scope', '$state', function($scope, $state) {
   $scope.home = function() {
     $state.go('home');
-  }
+  };
   $scope.todos = function() {
     $state.go('todos');
-  }
+  };
   $scope.notes = function() {
     $state.go('notes');
-  }
+  };
   $scope.projects = function() {
     $state.go('projects');
-  }
+  };
 }])
 .controller('NewsCtrl', ['$scope', '$state', '$http', 'Auth', function($scope, $state, $http, Auth) {
   if (!Auth.isLoggedIn()) {
@@ -41,7 +41,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     }
   });
 }])
-.controller('ProjectsCtrl', ['$scope', '$state', 'Project', 'Auth', function($scope, $state, Project, Auth) {
+.controller('ProjectsCtrl', ['$scope', '$state', 'Project', 'Auth', '$location', function($scope, $state, Project, Auth, $location) {
   if (!Auth.isLoggedIn()) {
     $state.go('login');
   }
@@ -62,7 +62,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       console.log(res);
       $location.path('/404');
     });
-  }
+  };
 }])
 .controller('ShowProjectCtrl', ['$scope', '$stateParams', '$state', 'Auth', 'Project', function($scope, $stateParams, $state, Auth, Project) {
   if (!Auth.isLoggedIn()) {
@@ -97,7 +97,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       console.log(res);
       $location.path('/404');
     });
-  }
+  };
 }])
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   $scope.user = {
@@ -114,7 +114,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
         $location.path('/404');
       });
     });
-  }
+  };
 }])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   $scope.user = {
@@ -128,8 +128,8 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     }, function error(res) {
       console.log(res.data);
       $location.path('/404');
-    })
-  }
+    });
+  };
 }])
 .controller('TodoCtrl', ['$scope', '$state', 'Auth', 'Todo', function($scope, $state, Auth, Todo) {
   if (!Auth.isLoggedIn()) {
