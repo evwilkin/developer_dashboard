@@ -70,7 +70,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   }
   $scope.project = {};
 
-//get all projects
+//get a specific project
   Project.get({id: $stateParams.id}, function success(res) {
     $scope.project = res;
   }, function error(res) {
@@ -166,6 +166,21 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   $scope.todo = {
     body: ''
   };
+}])
+.controller('ShowTodoCtrl', ['$scope', '$stateParams', '$state', 'Auth', 'Todo', function($scope, $stateParams, $state, Auth, Todo) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
+  $scope.todo = {};
+
+//get a specific todo
+  Todo.get({id: $stateParams.id}, function success(res) {
+    $scope.todo = res;
+    console.log(res);
+  }, function error(res) {
+    console.log(res);
+    $location.path('/404');
+  });
 }])
 .controller('NoteCtrl', ['$scope', '$location', '$uibModal', '$state', 'Auth', 'Note', function($scope, $location, $uibModal, $state, Auth, Note) {
   if (!Auth.isLoggedIn()) {

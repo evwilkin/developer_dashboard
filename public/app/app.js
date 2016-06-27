@@ -36,7 +36,7 @@ app.config([
   .state('showTodo', {
     url: '/todos/:id',
     templateUrl: 'app/views/showTodo.html',
-    controller: 'TodoCtrl'
+    controller: 'ShowTodoCtrl'
   })
   .state('projects', {
     url: '/projects',
