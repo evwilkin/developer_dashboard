@@ -1,14 +1,14 @@
 <div class="container">
 
-  <div id="todosShow" class="todo text-center" ng-controller="TodoCtrl">
-    <h3>To Do</h3>
+  <div class="todo text-center">
+    <h1>To Do</h1>
     <form class="todoInput" ng-submit="newTodo()">
       <input id="newBody" ng-model="todo.body" placeholder="New Todo" >
       <button type="submit">Add</button>
     </form>
     <div>
-      <ul class="homeTodos" ng-repeat="todo in todos track by $index ">
-        <li class="homeTodo">
+      <ul class="allTodos" ng-repeat="todo in todos track by $index ">
+        <li>
           <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo.id, $index)"></span>
           <a class="todoText" ng-href="/todos/{{todo.id}}">{{ todo.body }}</a>
         </li>

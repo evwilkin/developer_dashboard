@@ -5,6 +5,7 @@
 
   <div class="well" ng-repeat="note in notes track by $index ">
     <p>{{ note.text }}</p>
+    <a ng-click="deleteNote(note.id, $index)" class="btn btn-danger glyphicon glyphicon-trash pull-right"></a>
   </div>
 
 

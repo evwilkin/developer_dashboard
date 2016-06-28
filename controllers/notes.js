@@ -34,6 +34,12 @@ router.route('/:id')
       note.body = req.body;
       res.send(note);
     })
+  })
+  .delete(function(req, res) {
+    Note.findByIdAndRemove(req.params.id, function(err) {
+      if (err) return res.status(500).send(err);
+      res.send({'message': 'success'});
+    });
   });
 
 module.exports = router;

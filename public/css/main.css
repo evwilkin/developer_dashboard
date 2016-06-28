@@ -63,7 +63,7 @@ div.columnHeaders {
   color: white;
 }
 
-div.columnHeaders h3 {
+h3 {
   color: white;
 }
 
@@ -72,10 +72,15 @@ div.columnHeaders h3:hover {
 }
 
 div.homeProjects {
-  padding-top: 5px;
+  // padding-top: 5px;
 }
 
-div.homeProjects:hover {
+div.homeProjects h4 {
+  margin: 0;
+  padding: 10px 0;
+}
+
+div.homeProjects h4:hover {
   background-color: white;
 }
 
@@ -192,4 +197,8 @@ div.well p {
 #new {
   height: 10vh;
   overflow: auto;
+}
+
+.allTodos {
+  list-style-type: none;
 }
