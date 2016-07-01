@@ -53,6 +53,12 @@ app.config([
     templateUrl: 'app/views/showProject.html',
     controller: 'ShowProjectCtrl'
   })
+  //EDIT PROJECT
+  .state('editProject', {
+    url: '/projects/:id',
+    templateUrl: 'app/views/newProject.html',
+    controller: 'EditProjectCtrl'
+  })
   .state('notes', {
     url: '/notes',
     templateUrl: 'app/views/notes.html',

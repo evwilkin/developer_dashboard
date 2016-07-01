@@ -1,7 +1,9 @@
 angular.module('DeveloperDashboardServices', ['ngResource'])
 
 .factory('Project', ['$resource', function($resource) {
-  return $resource('/api/projects/:id');
+  return $resource('/api/projects/:id', null, {
+        'update': { method:'PUT' }
+    });
 }])
 
 .factory('Todo', ['$resource', function($resource) {

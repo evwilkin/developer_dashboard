@@ -1,6 +1,7 @@
 <div class="container">
 
-  <h1>New Project</h1>
+  <h1 ng-show="new">New Project</h1>
+  <h1 ng-hide="new">Edit Project</h1>
 
   <form ng-submit="newProject()">
     <div class="form-group">

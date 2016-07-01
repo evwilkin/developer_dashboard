@@ -77,6 +77,13 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     console.log(res);
     $location.path('/404');
   });
+
+  //Edit a specific project
+  $scope.editProject = function() {
+    $state.go('editProject', {
+      id: $stateParams.id
+    });
+  };
 }])
 .controller('NewProjectCtrl', ['$scope', '$state', '$location', 'Project', 'Auth', function($scope, $state, $location, Project, Auth) {
   if (!Auth.isLoggedIn()) {
@@ -90,6 +97,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     requirements: [],
     link: ''
   };
+  $scope.new = true;
   $scope.newProject = function() {
     Project.save($scope.project, function success (res) {
       $location.path('/projects');
@@ -99,6 +107,32 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     });
   };
 }])
+
+// EDIT A PROJECT
+.controller('EditProjectCtrl', ['$scope', '$state', '$location', '$stateParams', 'Project', 'Auth', function($scope, $state, $location, $stateParams, Project, Auth) {
+  if (!Auth.isLoggedIn()) {
+    $state.go('login');
+  }
+  $scope.project = {};
+  $scope.new = false;
+
+  Project.get({id: $stateParams.id}, function success(res) {
+    $scope.project = res;
+  }, function error(res) {
+    console.log(res);
+    $location.path('/404');
+  });
+
+  $scope.newProject = function() {
+    Project.update({ id: $scope.project.id}, $scope.project.id, function success (res) {
+      $location.path('/projects');
+    }, function error(res) {
+      console.log(res);
+      $location.path('/404');
+    });
+  };
+}])
+
 .controller('SignupCtrl', ['$scope', '$http', '$location', 'Auth', function($scope, $http, $location, Auth) {
   $scope.user = {
     email: '',
