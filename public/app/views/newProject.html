@@ -32,7 +32,8 @@
       <label for="todos">To Do</label>
       <textarea class="form-control" id="todos" ng-model="project.todos"></textarea>
     </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button ng-show="new" type="submit" class="btn btn-primary">Submit</button>
+    <button ng-hide="new" type="submit" class="btn btn-primary">Save</button>
+    <a ng-hide="new" class="btn btn-primary" ng-href="/projects">Cancel</a>
   </form>
 </div>

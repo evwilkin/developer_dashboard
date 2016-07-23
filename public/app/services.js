@@ -1,8 +1,8 @@
 angular.module('DeveloperDashboardServices', ['ngResource'])
 
 .factory('Project', ['$resource', function($resource) {
-  return $resource('/api/projects/:id', null, {
-        'update': { method:'PUT' }
+  return $resource('/api/projects/:id', { id: '@_id' }, {
+        update: { method:'PUT' }
     });
 }])
 
@@ -41,5 +41,5 @@ angular.module('DeveloperDashboardServices', ['ngResource'])
       }
       return config;
     }
-  }
-}])
+  };
+}]);

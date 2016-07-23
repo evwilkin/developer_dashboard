@@ -33,7 +33,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $state.go('login');
   }
   $scope.news = [];
-  $http.get('https://hacker-news.firebaseio.com/v0/newstories.json').then(function(res) {
+  $http.get('http://hacker-news.firebaseio.com/v0/newstories.json').then(function(res) {
     for (var i = 0; i < 10; i++) {
       $http.get("https://hacker-news.firebaseio.com/v0/item/"+res.data[i]+".json").then(function(data) {
         $scope.news.push(data.data);
@@ -124,7 +124,8 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   });
 
   $scope.newProject = function() {
-    Project.update({ id: $scope.project.id}, $scope.project.id, function success (res) {
+    Project.update({ id: $scope.project.id}, $scope.project, function success (res) {
+      console.log($scope.project);
       $location.path('/projects');
     }, function error(res) {
       console.log(res);

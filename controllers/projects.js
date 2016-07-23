@@ -20,7 +20,7 @@ router.route('/')
       userStories: req.body.userStories,
       requirements: req.body.requirements,
       link: req.body.link,
-      todos: req.body.todos,
+      todos: req.body.todos
     }, function(err, project) {
       if (err) return res.status(500).send(err);
       res.send(project);
@@ -35,9 +35,16 @@ router.route('/:id')
     });
   })
   .put(function(req, res) {
-    Project.findById(req.params.id, function(err, project) {
+    Project.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      description: req.body.description,
+      technologies: req.body.technologies,
+      userStories: req.body.userStories,
+      requirements: req.body.requirements,
+      link: req.body.link,
+      todos: req.body.todos
+    }, function(err, project) {
       if (err) return res.status(500).send(err);
-      project.body = req.body;
       res.send(project);
     });
   })
