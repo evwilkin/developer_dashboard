@@ -20,8 +20,8 @@
   </head>
   
   <body ng-app="DeveloperDashboard">
-    <div ng-include="'/app/views/navbar.html'"></div>
     <div id="views" ng-congroller="HomeCtrl" ng-style="{height: height - 50 + 'px'}" ui-view></div>
+    <div id="bottomNav" ng-include="'/app/views/navbar.html'"></div>
   </body>
 
 
