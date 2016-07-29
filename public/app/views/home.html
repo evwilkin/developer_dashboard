@@ -23,6 +23,7 @@
     </div>
   </div>
   <div class="row">
+  
     <!-- Display user's Todo items -->
     <div id="todo" class="col-sm-2 text-center" ng-controller="TodoCtrl">
       <form class="todoInput" ng-submit="newTodo()">
@@ -40,12 +41,13 @@
       </div>
       <p>{{ todo.body }}</p>
     </div>
+
     <!-- Display user's Notes -->
     <div id="notes" class="col-sm-8 text-center" ng-controller="NoteCtrl">
       <div class="homeNotes row">
-        <div class="notes" ng-repeat="note in notes track by $index">
+        <div class="notes" ng-repeat="note in notes | limitTo:8 track by $index">
           <div class="well">
-            <p class="noteText">{{note.text}}</p>
+            <p class="noteText">{{note.text | limitTo: 55}}{{ note.text.length > 55 ? '...' : '' }}</p>
           </div>
         </div>
       </div>
@@ -53,6 +55,8 @@
         <a href="/notes"><h4>View All Notes</h4></a>
       </div>
       <hr />
+
+      <!-- Display HackerNews feed -->
       <div id="news" class="row" ng-controller="NewsCtrl">
         <a href="https://news.ycombinator.com/newest">
           <h3>HackerNews</h3>
@@ -64,6 +68,7 @@
         </div>
       </div>
     </div>
+
     <!-- Display user's Projects -->
     <div id="projects" class="col-sm-2 text-center" ng-controller="ProjectsCtrl">
       

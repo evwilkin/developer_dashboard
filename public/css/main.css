@@ -110,9 +110,17 @@ div.homeProjects h4:hover {
 }
 
 div.notes {
-  height: 100px;
+  margin: 1% 2% 0;
+  height: 40%;
+  width: 20%;
   overflow: auto;
   display: inline-block;
+}
+
+div.notes .well {
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .center-block {
@@ -138,6 +146,7 @@ ul {
 p {
   color: #BCBCBC;
   font-size: 1.2em;
+  margin: 0;
 }
 
 .homeTodos {
@@ -157,7 +166,7 @@ p {
 
 .homeNotes {
   height: 45vh;
-  overflow: auto;
+  overflow: none;
 }
 
 hr {
@@ -216,16 +225,14 @@ hr {
   font-size: 3em;
 }
 
-div.notes {
-  margin: 0;
-}
-
 div.well {
   background-color: white;
   color: #e88c30;
   box-sizing: border-box;
   position: relative;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 div.well p {
