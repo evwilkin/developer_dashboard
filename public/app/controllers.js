@@ -222,6 +222,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
     $state.go('login');
   }
   $scope.notes = [];
+  $scope.edit = false;
 
   //get all Notes
   Note.query(function success(res) {

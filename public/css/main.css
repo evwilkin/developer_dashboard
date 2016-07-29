@@ -56,6 +56,12 @@ button.login, a.login {
 .navbar-default {
   margin-bottom: 0;
   border-radius: 0;
+  background-color: #444444;
+  color: white;
+  border-top: 2px solid white;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
 }
 
 #todo {
@@ -197,6 +203,23 @@ hr {
   border-bottom-left-radius: 0;
 }
 
+.glyphicon-ok {
+  position: absolute;
+  right: 10%;
+  height: 100%;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7em;
+  top: 0;
+  border-radius: 0;
+}
+
+textarea {
+  margin-right: 15%;
+}
+
 .addNote, .addProject {
   margin-bottom: 10px;
 }
@@ -233,6 +256,15 @@ div.well {
   border: none;
   display: flex;
   align-items: center;
+}
+
+#projectContainer div.well {
+  display: block;
+}
+
+#projectContainer h2 {
+  margin: 0;
+  font-size: 2.5em;
 }
 
 div.well p {

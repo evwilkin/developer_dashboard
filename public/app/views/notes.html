@@ -3,8 +3,14 @@
   <h1>Notes</h1>
   <a href="/notes/new" class="btn btn-success btn-sm">New Note</a> 
 
-  <div class="well" ng-repeat="note in notes track by $index ">
-    <p>{{ note.text }}</p>
+  <div class="well" ng-repeat="note in notes track by $index" ng-controller="NoteCtrl">
+    <p ng-hide="edit" ng-click="edit = !edit">
+      {{ note.text }}
+    </p>
+    <textarea ng-show="edit" ng-model="note.text" class="form-control" rows="3">
+      {{note.text}}
+    </textarea>
+    <a ng-click="edit = !edit" ng-show="edit" class="btn btn-success glyphicon glyphicon-ok"></a>
     <a ng-click="deleteNote(note.id, $index)" class="btn btn-danger glyphicon glyphicon-trash"></a>
   </div>
 

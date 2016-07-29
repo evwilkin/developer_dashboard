@@ -1,4 +1,4 @@
-<div class="container">
+<div id="projectContainer" class="container">
 
   <h1>Your Projects</h1>
   <a href="/projects/new" class="btn btn-success">New Project</a> 
@@ -7,7 +7,9 @@
   </span>
   <div class="well" ng-repeat="project in projects | filter:search track by $index ">
     
-    <a ng-href="/projects/{{project.id}}"><h1>{{project.name}}</h1></a>
+    <a ng-href="/projects/{{project.id}}">
+      <h2>{{project.name}}</h2>
+    </a>
     <p>{{project.description}}</p>
     <a ng-click="deleteProject(project.id, $index)" class="btn btn-danger glyphicon glyphicon-trash"></a>
   </div>
