@@ -23,6 +23,10 @@ div.columnHeaders a.btn-success:hover, div.columnHeaders span:hover {
   color: #5cb85c;
 }
 
+#allProjects div.well {
+  
+}
+
 a, a p, a h1 {
   color: #3080e8;
 }
