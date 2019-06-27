@@ -1,5 +1,5 @@
-.nav, .pagination, .carousel, .panel-title a { 
-  cursor: pointer; 
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
 }
 
 .row {
@@ -24,7 +24,7 @@ div.columnHeaders a.btn-success:hover, div.columnHeaders span:hover {
 }
 
 #allProjects div.well {
-  
+
 }
 
 a, a p, a h1 {
@@ -120,7 +120,7 @@ div.homeProjects h4:hover {
 }
 
 div.notes {
-  margin: 1% 2% 0;
+  margin: 10px 5px 0;
   height: 40%;
   width: 20%;
   overflow: auto;

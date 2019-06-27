@@ -1,4 +1,4 @@
-<div id="homePage">  
+<div id="homePage">
   <div class="row columnHeaders" ng-controller="TabsCtrl">
     <div id="todosHeader" class="bree col-sm-2 text-center">
       <a href="/todos">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="row">
-  
+
     <!-- Display user's Todo items -->
     <div id="todo" class="col-sm-2 text-center" ng-controller="TodoCtrl">
       <form class="todoInput" ng-submit="newTodo()">
@@ -45,7 +45,7 @@
     <!-- Display user's Notes -->
     <div id="notes" class="col-sm-8 text-center" ng-controller="NoteCtrl">
       <div class="homeNotes row">
-        <div class="notes" ng-repeat="note in notes | limitTo:8 track by $index">
+        <div class="notes" ng-repeat="note in notes | track by $index">
           <div class="well">
             <p class="noteText">{{note.text | limitTo: 55}}{{ note.text.length > 55 ? '...' : '' }}</p>
           </div>
@@ -71,7 +71,7 @@
 
     <!-- Display user's Projects -->
     <div id="projects" class="col-sm-2 text-center" ng-controller="ProjectsCtrl">
-      
+
       <hr id="projectsRule" />
       <div class="homeProjects" ng-repeat="project in projects track by $index">
         <a ng-href="/projects/{{project.id}}">
