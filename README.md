@@ -2,7 +2,7 @@
 
 ### A project dashboard created by a developer for developers.
 
-![DevDash Screenshot](/images/DevDash.png)
+![DevDash Screenshot](/public/images/DevDash.png)
 
 ## Technologies
 
