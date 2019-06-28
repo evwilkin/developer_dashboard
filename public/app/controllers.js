@@ -35,8 +35,8 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   $scope.news = [];
   $http.get('http://hacker-news.firebaseio.com/v0/newstories.json').then(function(res) {
     for (var i = 0; i < 10; i++) {
-      $http.get("https://hacker-news.firebaseio.com/v0/item/"+res.data[i]+".json").then(function(data) {
-        $scope.news.push(data.data);
+      $http.get("https://hacker-news.firebaseio.com/v0/item/"+res[i]+".json").then(function(data) {
+        $scope.news.push(data);
       });
     }
   });
@@ -158,7 +158,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
   };
   $scope.userLogin = function() {
     $http.post('/api/auth', $scope.user).then(function success(res) {
-      Auth.saveToken(res.data.token);      
+      Auth.saveToken(res.data.token);
       $location.path('/home');
     }, function error(res) {
       console.log(res.data);
@@ -279,7 +279,7 @@ angular.module('DeveloperDashboardCtrls', ['DeveloperDashboardServices'])
       }
     });
 
-    
+
   };
 
 })*/
